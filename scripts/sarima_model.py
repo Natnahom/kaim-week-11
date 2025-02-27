@@ -42,6 +42,18 @@ def evaluate_sarima(model, test_data):
     # Align indices (if necessary)
     predictions = pd.Series(predictions, index=test_data.index)
     
+    print(f"NaN values in test_data: {test_data.isnull().sum()}")
+    print(f"NaN values in predictions: {pd.isnull(predictions).sum()}")
+
+    # Check for NaN values
+    if test_data.isnull().any():
+        print("Warning: test_data contains NaN values. Filling NaN values with forward fill.")
+        test_data = test_data.ffill()  # Forward fill NaN values
+    
+    if pd.isnull(predictions).any():
+        print("Warning: predictions contain NaN values. Filling NaN values with forward fill.")
+        predictions = predictions.ffill()  # Forward fill NaN values
+    
     # Calculate evaluation metrics
     mae = mean_absolute_error(test_data, predictions)
     rmse = np.sqrt(mean_squared_error(test_data, predictions))
