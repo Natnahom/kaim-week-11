@@ -33,8 +33,10 @@ def evaluate_sarima(model, test_data):
     print("test_data head:")
     print(test_data.head())
     
-    # Generate predictions
-    predictions = model.predict(n_periods=len(test_data))
+    # Generate predictions for the same time period as test_data
+    start_index = len(model.model.endog)  # Start predicting from the end of training data
+    end_index = start_index + len(test_data) - 1  # End at the last index of test_data
+    predictions = model.predict(start=start_index, end=end_index)
     
     # Debug: Print the head of predictions
     print("predictions head:")
@@ -42,33 +44,24 @@ def evaluate_sarima(model, test_data):
     
     # Ensure predictions is a 1D array
     predictions = np.squeeze(predictions)  # Convert to 1D array
-    
-    # Create a pandas Series for predictions with the same index as test_data
-    predictions = pd.Series(predictions, index=test_data.index)
-    
-    # Check for NaN values in test_data and predictions
+
     if test_data.isnull().any().any():
-        print("Warning: test_data contains NaN values. Filling NaN values with forward fill.")
-        test_data = test_data.ffill()  # Forward fill NaN values
-    
-    if predictions.isnull().any().any():
+        print("NaN values found in test_data:")
+        print(test_data[test_data.isnull()])
+
+    # Check for NaN values in test_data and predictions
+    if predictions.isnull().any():
         print("Warning: predictions contain NaN values. Filling NaN values with forward fill.")
         predictions = predictions.ffill()  # Forward fill NaN values
     
-    # # Ensure no NaN values remain
-    # if test_data.isnull().any().any() or predictions.isnull().any().any():
-    #     raise ValueError("NaN values still exist in test_data or predictions after forward fill.")
-    
-    print(f"test_data head:\n{test_data.head()}")
-    print(f"predictions head:\n{predictions.head()}")
-    print(f"NaN values in test_data: {test_data.isnull().sum()}")
-    print(f"NaN values in predictions: {predictions.isnull().sum()}")
+    # Calculate evaluation metrics only if there are no NaN values
+    if not test_data.isnull().any().any() and not predictions.isnull().any():
+        mae = mean_absolute_error(test_data, predictions)
+        rmse = np.sqrt(mean_squared_error(test_data, predictions))
+        mape = np.mean(np.abs((test_data - predictions) / test_data)) * 100
+    else:
+        raise ValueError("Input contains NaN values in either test_data or predictions.")
 
-    # Calculate evaluation metrics
-    mae = mean_absolute_error(test_data, predictions)
-    rmse = np.sqrt(mean_squared_error(test_data, predictions))
-    mape = np.mean(np.abs((test_data - predictions) / test_data)) * 100
-    
     return predictions, mae, rmse, mape
 
 def save_sarima_model(model, filename='sarima_model.pkl'):
