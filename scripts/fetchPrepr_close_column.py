@@ -1,4 +1,5 @@
 import yfinance as yf
+import pandas as pd
 
 def fetch_data(ticker, start_date, end_date):
     """
@@ -25,6 +26,12 @@ def preprocess_data(data):
     Returns:
         tuple: (train_data, test_data)
     """
+    # Ensure the data is a pandas Series with a DateTime index
+    if isinstance(data, pd.DataFrame):
+        data = data['Close']  # Extract the 'Close' column if it's a DataFrame
+    
+    # Split data into training and testing sets
     train_size = int(len(data) * 0.8)  # 80% training, 20% testing
     train_data, test_data = data.iloc[:train_size], data.iloc[train_size:]
+    
     return train_data, test_data
