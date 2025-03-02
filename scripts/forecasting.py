@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import MinMaxScaler
+import joblib
 import warnings
 warnings.filterwarnings('ignore')  # Ignore warnings for cleaner output
 
@@ -23,7 +24,7 @@ def sarima_forecast(model, steps=12):
     
     return forecast_values, confidence_intervals
 
-def lstm_forecast(model, last_sequence, steps=12, lookback=60):
+def lstm_forecast(model, last_sequence, steps=12, lookback=60, scaler_filename='scaler.pkl'):
     """
     Generate future forecasts using the LSTM model.
     
@@ -32,11 +33,14 @@ def lstm_forecast(model, last_sequence, steps=12, lookback=60):
         last_sequence (np.array): Last sequence of historical data.
         steps (int): Number of steps (months) to forecast.
         lookback (int): Lookback period used for training the LSTM model.
+        scaler_filename (str): Path to the saved scaler.
     
     Returns:
         np.array: Forecasted values.
     """
-    scaler = MinMaxScaler(feature_range=(0, 1))
+    # Load the scaler
+    scaler = joblib.load(scaler_filename)
+    
     predictions = []
     current_sequence = last_sequence.reshape(1, lookback, 1)
     
@@ -45,8 +49,11 @@ def lstm_forecast(model, last_sequence, steps=12, lookback=60):
         next_value = model.predict(current_sequence, verbose=0)
         predictions.append(next_value[0][0])
         
+        # Reshape next_value to match the dimensions of current_sequence
+        next_value = next_value.reshape(1, 1, 1)  # Reshape to (1, 1, 1)
+        
         # Update the sequence with the predicted value
-        current_sequence = np.append(current_sequence[:, 1:, :], [[next_value]], axis=1)
+        current_sequence = np.append(current_sequence[:, 1:, :], next_value, axis=1)
     
     # Inverse transform the predictions to original scale
     predictions = scaler.inverse_transform(np.array(predictions).reshape(-1, 1))
