@@ -362,6 +362,158 @@ SARIMA is faster to train and interpret but may underperform on highly volatile 
 
 LSTM is more flexible and accurate but requires more data and computational resources.
 
+# Task 3: Forecast Future Market Trends
+This repository contains the code and documentation for Task 3 of the financial data analysis project. The goal of this task is to use the best-performing model from Task 2 (either SARIMA or LSTM) to forecast Tesla's (TSLA) future stock prices for the next 6-12 months. We will analyze the forecasted trends, visualize the results, and provide insights on potential market opportunities and risks.
+
+## Table of Contents
+- Objective
+
+- Data Description
+
+- Steps Performed
+
+- Code Structure
+
+- Outputs
+
+- How to Run the Code
+
+- Dependencies
+
+- Key Insights
+
+## Objective
+- The objective of this task is to:
+
+Use the trained SARIMA or LSTM model to forecast Tesla's stock prices for the next 6-12 months.
+
+Visualize the forecasted prices alongside historical data.
+
+Analyze the forecasted trends to identify potential market opportunities and risks.
+
+## Data Description
+The dataset includes historical stock price data for Tesla (TSLA) sourced from YFinance. The data covers the period from January 1, 2015, to January 31, 2025, and includes the following columns:
+
+- Date: Trading day timestamp.
+
+Open, High, Low, Close: Daily price metrics.
+
+- Adj Close: Adjusted close price to account for dividends and splits.
+
+- Volume: Total number of shares traded each day.
+
+## Steps Performed
+- Load the Trained Model:
+
+Load the best-performing model (SARIMA or LSTM) from Task 2.
+
+- Generate Future Forecasts:
+
+Use the trained model to generate forecasts for the next 6-12 months.
+
+- Visualize the Forecast:
+
+Plot the forecasted prices alongside historical data.
+
+Include confidence intervals (for SARIMA) to show the range of expected prices.
+
+- Interpret the Results:
+
+Analyze the forecasted trends to identify long-term trends (upward, downward, or stable).
+
+Assess volatility and risk based on confidence intervals.
+
+Highlight potential market opportunities and risks.
+
+## Code Structure
+The code is modular and organized into functions for better readability and reusability. Below is the structure of the code:
+
+## Functions
+- load_sarima_model:
+
+Load the trained SARIMA model from a file.
+
+- load_lstm_model:
+
+Load the trained LSTM model from a file.
+
+- sarima_forecast:
+
+Generate future forecasts using the SARIMA model.
+
+- lstm_forecast:
+
+Generate future forecasts using the LSTM model.
+
+- plot_forecast:
+
+Visualize the forecasted prices alongside historical data.
+
+- interpret_forecast:
+
+Analyze the forecasted trends to identify market opportunities and risks.
+
+## Outputs
+- Forecast Plot:
+
+A plot showing historical prices and forecasted prices for the next 6-12 months.
+
+Confidence intervals (for SARIMA) to indicate the range of expected prices.
+
+- Forecast Analysis:
+
+Trend analysis (upward, downward, or stable).
+
+Volatility and risk assessment based on confidence intervals.
+
+Market opportunities and risks based on the forecasted trend.
+
+## How to Run the Code
+1. Clone the repository:
+
+2. Install the required dependencies:
+
+- pip install -r requirements.txt
+3. Run the Python script:
+- Follow the forecasting.ipynb
+
+## Dependencies
+The following Python libraries are required to run the code:
+
+- yfinance
+
+- pandas
+
+- numpy
+
+- matplotlib
+
+- statsmodels
+
+- pmdarima
+
+- scikit-learn
+
+- tensorflow
+
+- joblib
+
+## Trend Analysis:
+
+- The forecast shows whether Tesla's stock prices are expected to increase (upward trend), decrease (downward trend), or remain stable.
+
+1.  Volatility and Risk:
+
+Confidence intervals (for SARIMA) indicate the level of uncertainty in the forecast.
+
+Higher volatility suggests greater risk and potential for larger price swings.
+
+2. Market Opportunities and Risks:
+
+An upward trend suggests potential opportunities for investment.
+
+A downward trend suggests potential risks and the need for caution.
+
 ## Author
 - Natnahom Asfaw
 - 27/02/2025
