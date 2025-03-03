@@ -514,6 +514,8 @@ An upward trend suggests potential opportunities for investment.
 
 A downward trend suggests potential risks and the need for caution.
 
+# Task 4: Optimize Portfolio Based on Forecast
+
 ## Author
 - Natnahom Asfaw
 - 27/02/2025
