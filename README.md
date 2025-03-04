@@ -516,6 +516,203 @@ A downward trend suggests potential risks and the need for caution.
 
 # Task 4: Optimize Portfolio Based on Forecast
 
+This repository contains the code and documentation for Task 4 of the financial data analysis project. The goal of this task is to use the forecasted data from Task 3 to optimize a sample investment portfolio consisting of Tesla (TSLA), Vanguard Total Bond Market ETF (BND), and S&P 500 ETF (SPY). The objective is to adjust the portfolio weights to maximize returns while minimizing risks based on the predicted market trends.
+
+## Table of Contents
+- Objective
+
+- Data Description
+
+- Steps Performed
+
+- Code Structure
+
+- Outputs
+
+- How to Run the Code
+
+- Dependencies
+
+- Key Insights
+
+## Objective
+- The objective of this task is to:
+
+Use the forecasted Tesla (TSLA) prices from Task 3 to optimize a portfolio of three assets: TSLA, BND, and SPY.
+
+Compute portfolio metrics such as return, risk (volatility), Value at Risk (VaR), and Sharpe Ratio.
+
+Adjust portfolio weights to maximize the Sharpe Ratio (risk-adjusted return).
+
+Visualize portfolio performance and analyze risk-return trade-offs.
+
+## Data Description
+The dataset includes historical stock price data for the following assets:
+
+Tesla (TSLA): High-growth, high-risk stock.
+
+Vanguard Total Bond Market ETF (BND): Bond ETF for stability.
+
+S&P 500 ETF (SPY): Index fund for diversification.
+
+The data is sourced from YFinance and covers the period from January 1, 2015, to January 31, 2025.
+
+## Steps Performed
+- Fetch Historical Data:
+
+Fetch historical data for TSLA, BND, and SPY using YFinance.
+
+- Combine Forecasted and Historical Data:
+
+Combine forecasted TSLA prices with historical data for BND and SPY.
+
+- Compute Annual Returns and Covariance Matrix:
+
+Calculate annual returns and the covariance matrix for the assets.
+
+- Optimize Portfolio Weights:
+
+Use optimization to find the weights that maximize the Sharpe Ratio.
+
+- Analyze Portfolio Risk and Return:
+
+Calculate portfolio metrics such as return, risk (volatility), VaR, and Sharpe Ratio.
+
+- Visualize Portfolio Performance:
+
+Plot the optimized portfolio's performance, risk-return trade-offs, and asset allocation.
+
+## Code Structure
+The code is modular and organized into functions for better readability and reusability. Below is the structure of the code:
+
+Functions
+- fetch_historical_data:
+
+Fetch historical data for given tickers using YFinance.
+
+- create_combined_dataframe:
+
+Combine forecasted TSLA prices with historical data for BND and SPY.
+
+- compute_annual_returns_and_covariance:
+
+Compute annual returns and the covariance matrix for the assets.
+
+- calculate_portfolio_risk:
+
+Calculate portfolio risk (volatility).
+
+- portfolio_return:
+
+Calculate portfolio return.
+
+- sharpe_ratio:
+
+Calculate the Sharpe Ratio.
+
+- optimize_portfolio:
+
+Optimize portfolio weights to maximize the Sharpe Ratio.
+
+- analyze_portfolio:
+
+Analyze portfolio risk and return.
+
+- plot_asset_allocation:
+
+Plot a pie chart showing the optimized asset allocation.
+
+- plot_risk_return:
+
+Plot risk (volatility) vs. return for each asset and the optimized portfolio.
+
+- plot_rolling_volatility:
+
+Plot the rolling volatility of the portfolio over time.
+
+- plot_var_distribution:
+
+Plot the distribution of portfolio returns and highlight the Value at Risk (VaR).
+
+- plot_cumulative_returns_comparison:
+
+Compare the cumulative returns of the optimized portfolio with individual assets.
+
+## Outputs
+Optimized Portfolio Weights:
+
+- TSLA: 0.00%
+
+- BND: 78.81%
+
+- SPY: 21.19%
+
+Portfolio Metrics:
+
+- Return: 49.68%
+
+- Volatility: 4.93%
+
+- VaR (95%): -0.09%
+
+- Sharpe Ratio: 9.67
+
+### Visualizations:
+
+- Asset Allocation Pie Chart.
+
+- Risk-Return Scatter Plot.
+
+- Rolling Volatility Plot.
+
+- Value at Risk (VaR) Distribution.
+
+- Cumulative Returns Comparison.
+
+## How to Run the Code
+1. Clone the repository:
+
+2. Install the required dependencies:
+
+- pip install -r requirements.txt
+
+3. Run the Python script:
+- Follow the portfolio_optimization.ipynb
+
+## Dependencies
+The following Python libraries are required to run the code:
+
+- yfinance
+
+- pandas
+
+- numpy
+
+- matplotlib
+
+- scipy
+
+- scikit-learn
+
+- joblib
+
+You can install them using:
+
+- pip install yfinance pandas numpy matplotlib scipy scikit-learn joblib
+
+## Key Insights
+- Optimized Portfolio Weights:
+
+The optimized portfolio allocates weights to TSLA, BND, and SPY based on their risk-return profiles.
+
+- Portfolio Metrics:
+
+The portfolio achieves a balance between return and risk, as measured by the Sharpe Ratio.
+
+- Visualizations:
+
+The visualizations provide insights into the portfolio's performance, risk-return trade-offs, and asset allocation.
+
 ## Author
 - Natnahom Asfaw
 - 27/02/2025
