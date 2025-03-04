@@ -188,6 +188,180 @@ TSLA has several outliers in its daily returns, indicating days with unusually h
 
 The time series decomposition for TSLA reveals a clear trend and some seasonal patterns.
 
+# Task 2: Develop Time Series Forecasting Models
+
+This repository contains the code and documentation for Task 2 of the financial data analysis project. The goal of this task is to develop and evaluate time series forecasting models to predict Tesla's (TSLA) future stock prices. We will implement SARIMA and LSTM models, compare their performance, and use the best-performing model to optimize portfolio management strategies.
+
+## Table of Contents
+- Objective
+
+- Data Description
+
+- Steps Performed
+
+- Code Structure
+
+- Outputs
+
+- How to Run the Code
+
+- Dependencies
+
+- Key Insights
+
+## Objective
+- The objective of this task is to:
+
+Develop time series forecasting models (SARIMA and LSTM) to predict Tesla's stock prices.
+
+Evaluate the models using metrics such as MAE, RMSE, and MAPE.
+
+Compare the performance of SARIMA and LSTM models.
+
+Use the best-performing model to optimize portfolio management strategies.
+
+## Data Description
+The dataset includes historical stock price data for Tesla (TSLA) from January 1, 2015, to January 31, 2025. The data is sourced from YFinance and includes the following columns:
+
+- Date: Trading day timestamp.
+
+- Open, High, Low, Close: Daily price metrics.
+
+- Adj Close: Adjusted close price to account for dividends and splits.
+
+- Volume: Total number of shares traded each day.
+
+## Steps Performed
+- Data Fetching and Preprocessing:
+
+Fetch historical data for TSLA using the YFinance library.
+
+Split the data into training and testing sets (80% training, 20% testing).
+
+- SARIMA Model:
+
+Fit a SARIMA model using auto_arima to automatically select the best parameters.
+
+Generate predictions for the test data.
+
+Evaluate the model using MAE, RMSE, and MAPE.
+
+- LSTM Model:
+
+Prepare the data for LSTM by creating sequences of lookback periods.
+
+Build and train an LSTM model using TensorFlow/Keras.
+
+Generate predictions for the test data.
+
+Evaluate the model using MAE, RMSE, and MAPE.
+
+- Model Comparison:
+
+Compare the performance of SARIMA and LSTM models.
+
+Visualize the actual prices, SARIMA predictions, and LSTM predictions.
+
+## Code Structure
+The code is modular and organized into functions for better readability and reusability. Below is the structure of the code:
+
+## Functions
+- fetch_data:
+
+Fetches historical data for a given ticker using YFinance.
+
+- preprocess_data:
+
+Splits the data into training and testing sets.
+
+- fit_sarima:
+
+Fits a SARIMA model using auto_arima.
+
+- evaluate_sarima:
+
+Evaluates the SARIMA model on the test data.
+
+- prepare_lstm_data:
+
+Prepares the data for LSTM by creating sequences of lookback periods.
+
+- build_lstm_model:
+
+Builds an LSTM model using TensorFlow/Keras.
+
+- evaluate_lstm:
+
+Evaluates the LSTM model on the test data.
+
+## Outputs
+- SARIMA Metrics:
+
+MAE, RMSE, and MAPE values for the SARIMA model.
+
+- LSTM Metrics:
+
+MAE, RMSE, and MAPE values for the LSTM model.
+
+Plot:
+
+A plot comparing actual prices, SARIMA predictions, and LSTM predictions.
+
+## How to Run the Code
+1. Clone the repository:
+
+2. Install the required dependencies:
+
+- pip install -r requirements.txt
+
+3. Run the Python script:
+- Follow the timeSeries_forcasting.ipynb
+
+## Dependencies
+The following Python libraries are required to run the code:
+
+- yfinance
+
+- pandas
+
+- numpy
+
+- matplotlib
+
+- statsmodels
+
+- pmdarima
+
+- scikit-learn
+
+- tensorflow
+
+## You can install them using:
+
+- pip install yfinance pandas numpy matplotlib statsmodels pmdarima scikit-learn tensorflow
+Key Insights
+- SARIMA Model:
+
+Suitable for univariate time series with seasonality.
+
+Automatically selects the best parameters using auto_arima.
+
+Provides interpretable results but may struggle with highly volatile data.
+
+- LSTM Model:
+
+A deep learning model capable of capturing long-term dependencies.
+
+Requires more data and computational resources but can handle complex patterns.
+
+Often outperforms traditional statistical models for large datasets.
+
+- Model Comparison:
+
+SARIMA is faster to train and interpret but may underperform on highly volatile data.
+
+LSTM is more flexible and accurate but requires more data and computational resources.
+
 ## Author
 - Natnahom Asfaw
 - 27/02/2025
